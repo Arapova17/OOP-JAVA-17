@@ -1,9 +1,8 @@
-package LMS.TaskIncapsulition;
+package LMS.TaskEncapsulation;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
-public class IncapsulitionMain {
+public class EncapsulationMain {
     public static void main(String[] args) {
 
         University[] universities;

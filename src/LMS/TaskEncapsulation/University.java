@@ -1,6 +1,4 @@
-package LMS.TaskIncapsulition;
-
-import java.util.Arrays;
+package LMS.TaskEncapsulation;
 
 public class University {
     private String name;

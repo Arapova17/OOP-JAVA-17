@@ -1,4 +1,4 @@
-package LMS.TaskIncapsulition;
+package LMS.TaskEncapsulation;
 
 public class Car {
     private String marca;
