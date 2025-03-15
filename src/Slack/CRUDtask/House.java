@@ -6,18 +6,10 @@ public class House {
     private double price;
     private int room;
     private String country;
-
-    // constructor
-    public House(long id, String address, double price, int room, String country) {
-        this.id = id;
-        this.address = address;
-        this.price = price;
-        this.room = room;
-        this.country = country;
-    }
+    
 
     // get
-    public long id() {
+    public long getId() {
         return id;
     }
 
@@ -26,7 +18,7 @@ public class House {
         this.id = id;
     }
 
-    public String address() {
+    public String getAddress() {
         return address;
     }
 
@@ -34,7 +26,7 @@ public class House {
         this.address = address;
     }
 
-    public double price() {
+    public double getPrice() {
         return price;
     }
 
@@ -42,7 +34,7 @@ public class House {
         this.price = price;
     }
 
-    public int room() {
+    public int getRoom() {
         return room;
     }
 
@@ -50,7 +42,7 @@ public class House {
         this.room = room;
     }
 
-    public String country() {
+    public String getCountry() {
         return country;
     }
 
@@ -59,18 +51,80 @@ public class House {
     }
 
     // TODO CREATE
-    public void createHouse(House house){
+   public House[] createHouse(House[] houses, House house){
+        House[] newHouses = new House[houses.length + 1];
+
+       for (int i = 0; i < houses.length; i++) {
+           newHouses[i] = houses[i];
+       }
+
+       newHouses[houses.length] = house;
+       return newHouses;
+   }
+
+   // TODO GET ALL
+    public House[] getAllHouses(House[] houses){
+        return houses;
+    }
+
+    // TODO GET BY ID
+    public House getById(long id, House[] houses){
+        for (House house : houses){
+            if (id == house.getId()){
+                return house;
+            }
+        }
+        return null;
+    }
+
+    // TODO UPDATE
+    public House[] updateHouseById(long ip, House[] houses, House updateHouse){
+        for (int i = 0; i < houses.length; i++) {
+            if (houses[i].getId() == id){
+                houses[i].setAddress(updateHouse.getAddress());
+                houses[i].setPrice(updateHouse.getPrice());
+                houses[i].setRoom(updateHouse.getRoom());
+                houses[i].setCountry(updateHouse.getCountry());
+                return houses;
+            }
+        }
+        System.out.println("House withe ID: " + id + " not found");
+        return houses;
+    }
+
+    // TODO DELETE
+    public House[] deleteHouseById(long id, House[] houses){
+        int index = - 1;
+
+        for (int i = 0; i < houses.length; i++) {
+            if (houses[i].getId() == id){
+                index = i;
+                break;
+            }
+        }
+
+        if (index == - 1){
+            System.out.println("House withe ID " + id + " not found");
+            return houses;
+        }
+
+        House[] newHouses = new House[houses.length - 1];
+        for (int i = 0, j = 0; i < houses.length; i++) {
+            if (i != index){
+                newHouses[j++] = houses[i];
+            }
+        }
+
+        return newHouses;
 
     }
 
-    //toString
     @Override
     public String toString() {
-        return "House{" +
-                "id = " + id +
+        return "\nid = " + id +
                 "\naddress = " + address +
                 "\nprice = " + price +
                 "\nroom = " + room +
-                "\ncountry = " + country ;
+                "\ncountry = " + country + "\n--------------";
     }
 }

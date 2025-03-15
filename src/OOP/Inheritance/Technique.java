@@ -1,16 +1,21 @@
-package Inheritance;
+package OOP.Inheritance;
 
 public class Technique {
     private String marca;
     private int price;
+
+    public Technique(String marca, int price) {
+        this.marca = marca;
+        this.price = price;
+    }
 
     public String marca() {
         System.out.println(marca);
         return marca;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setMarcaSmartWatch(String marcaSmartWatch) {
+        this.marca = marcaSmartWatch;
     }
 
     public int price() {
@@ -21,15 +26,13 @@ public class Technique {
         this.price = price;
     }
 
-    public String ShopName(String name){
+    public void ShopName(String name){
         System.out.println("\nShop: " + name);
-        return name;
     }
 
     @Override
     public String toString() {
-        return "Technique:" +
-                "\nmarca = " + marca +
+        return "\nmarca = " + marca +
                 "\nprice = " + price ;
     }
 }

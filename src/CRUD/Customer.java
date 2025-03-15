@@ -16,7 +16,7 @@ public class Customer {
     private LocalDate localDate;
     private String phone;
 
-    public long ID() {
+    public long getID() {
         return ID;
     }
 
@@ -24,7 +24,7 @@ public class Customer {
         this.ID = ID;
     }
 
-    public String firstName() {
+    public String getFirstName() {
         return firstName;
     }
 
@@ -32,7 +32,7 @@ public class Customer {
         this.firstName = firstName;
     }
 
-    public String gmail() {
+    public String getGmail() {
         return gmail;
     }
 
@@ -40,7 +40,7 @@ public class Customer {
         this.gmail = gmail;
     }
 
-    public LocalDate localDate() {
+    public LocalDate getLocalDate() {
         return localDate;
     }
 
@@ -48,7 +48,7 @@ public class Customer {
         this.localDate = localDate;
     }
 
-    public String phone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -56,33 +56,84 @@ public class Customer {
         this.phone = phone;
     }
 
-    //TODO CRUD
-    //TODO CREATE
-    public void createCustomer(Customer[] customers, Customer customer){
+    // CREATE
+    public Customer[] createCustomer(Customer[] customers, Customer customer) {
         Customer[] newCustomers = new Customer[customers.length + 1];
 
-        for (int i = 0; i < customers.length; ++i) {
+        for (int i = 0; i < customers.length; i++) {
             newCustomers[i] = customers[i];
         }
 
         newCustomers[customers.length] = customer;
-        customers = newCustomers;
-        System.out.println(Arrays.toString(customers));
+        return newCustomers;
     }
 
-    //TODO GetALL
-    public Customer[] getAllCustomers(Customer[] customers){
+    // GET ALL
+    public Customer[] getAllCustomers(Customer[] customers) {
         return customers;
+    }
+
+    // GET BY ID
+    public Customer getById(long id, Customer[] customers) {
+        for (Customer customer : customers) {
+            if (id == customer.getID()) {
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    // UPDATE
+    public Customer[] updateCustomerById(long ID, Customer[] customers, Customer updateCustomer) {
+        for (int i = 0; i < customers.length; i++) {
+            if (customers[i].getID() == ID) {
+                customers[i].setFirstName(updateCustomer.getFirstName());
+                customers[i].setGmail(updateCustomer.getGmail());
+                customers[i].setPhone(updateCustomer.getPhone());
+                customers[i].setLocalDate(updateCustomer.getLocalDate());
+                return customers;
+            }
+        }
+        System.out.println("Customer with ID " + ID + " not found.");
+        return customers;
+    }
+
+    // DELETE
+    public Customer[] deleteCustomerById(long ID, Customer[] customers) {
+        int index = -1;
+
+        for (int i = 0; i < customers.length; i++) {
+            if (customers[i].getID() == ID) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            System.out.println("Customer with ID " + ID + " not found.");
+            return customers;
+        }
+
+        Customer[] newCustomers = new Customer[customers.length - 1];
+
+        for (int i = 0, j = 0; i < customers.length; i++) {
+            if (i != index) {
+                newCustomers[j++] = customers[i];
+            }
+        }
+
+        return newCustomers;
     }
 
     @Override
     public String toString() {
-        return "Customer; " +
+        return "Customer: " +
                 "\nID= " + ID +
-                "\nfirstName = " + firstName +
-                "\ngmail = " + gmail +
-                "\nlocalDate = " + localDate +
-                "\nphone = " + phone ;
+                "\nFirst Name = " + firstName +
+                "\nGmail = " + gmail +
+                "\nLocal Date = " + localDate +
+                "\nPhone = " + phone;
     }
-
 }
+
+
