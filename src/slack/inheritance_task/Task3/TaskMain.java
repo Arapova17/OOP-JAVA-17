@@ -32,26 +32,22 @@ public class TaskMain {
         whatsApp.buyerWhatsApp("Facebook", "$19 миллиар");
 
         Chat[] chats = new Chat[]{instagram, slack, telegram, whatsApp};
-        System.out.println(ChatNew());
+
+        isNewChat(chats);
     }
 
-    public static String ChatNew () {
-        Instagram instagram = new Instagram();
-        Slack slack = new Slack();
-        Telegram telegram = new Telegram();
-        WhatsApp whatsApp = new WhatsApp();
-        Chat chat0 = new Chat();
-        Chat[] chat = new Chat[]{instagram, slack, telegram, whatsApp};
-        LocalDate max = chat0.dateOfIssue();
-        for (Chat chat1 : chat) {
-            LocalDate max1 = chat1.dateOfIssue();
-            if (max1.getYear() > max.getYear()) {
-                System.out.println("New chat");
-            } else {
-                System.out.println("Old chat");
+    public static void isNewChat(Chat[] chats) {
+        if (chats.length == 0) return;
+
+        Chat newestChat = chats[0];
+
+        for (Chat chat : chats) {
+            if (chat.dateOfIssue().isAfter(newestChat.dateOfIssue())) {
+                newestChat = chat;
             }
-
         }
-        return "";
+
+        System.out.println("\nIs new chat: " + newestChat.name());
     }
+
 }

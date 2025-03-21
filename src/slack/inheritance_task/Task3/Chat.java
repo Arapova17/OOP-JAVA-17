@@ -8,6 +8,8 @@ public class Chat {
     private LocalDate dateOfIssue;
     private String designColor;
 
+    private Chat[] chats;
+
     public Chat() {
     }
 
@@ -50,18 +52,25 @@ public class Chat {
         this.designColor = designColor;
     }
 
+    public  Chat [] chats (Chat[] chats) {
+        return this.chats = chats;
+    }
+
     public String getChatName(){
         System.out.println("\n______________\n" + name);
 
         return "Color: " + designColor;
     }
 
+    int newChat = 2010;
     public boolean getIsNewChat(){
-        if (2010 < dateOfIssue.getYear() ) {
+        if (newChat < dateOfIssue.getYear() ) {
             return false;
         } else {
             return true;
         }
+
+
     }
 
     @Override

@@ -4,6 +4,8 @@ public class Apartment {
     private String title;
     private int price;
     private String address;
+    private Student[] students;
+
 
     public Apartment() {
     }
@@ -39,9 +41,12 @@ public class Apartment {
         this.address = address;
     }
 
-   public void payperMonth(int rent){
-        int student = 6;
-       System.out.println("Rent: " + rent / student);
+    int rent;
+   public int  payperMonth(Student [] students){
+
+       rent = price() / students.length;
+       System.out.print("Rent: ");
+       return rent;
    }
 
     @Override

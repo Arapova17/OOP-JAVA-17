@@ -1,15 +1,17 @@
 package slack.inheritance_task.Task4;
 
+import java.util.Arrays;
+
 public class Student {
     private String fullName;
     private String phoneNumber;
     private String address;
-    private String bankAccount;
+    private int bankAccount;
 
     public Student() {
     }
 
-    public Student(String fullName, String phoneNumber, String address, String bankAccount) {
+    public Student(String fullName, String phoneNumber, String address, int bankAccount) {
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -40,19 +42,31 @@ public class Student {
         this.address = address;
     }
 
-    public String bankAccount() {
+    public int bankAccount() {
         return bankAccount;
     }
 
-    public void setBankAccount(String bankAccount) {
+    public void setBankAccount(int bankAccount) {
         this.bankAccount = bankAccount;
     }
 
-    public double living(int studentMoney){
-        double month = 5000;
-        System.out.println("Living: " + studentMoney / month);
-        return studentMoney;
+    public void living(Apartment apartment, Student [] students) {
+        int month;
+        for (Student student : students){
+                month = student.bankAccount / apartment.rent;
+            System.out.print("\n" + student.fullName + "\nУшунча ай жашай аласыз; " + month );
+
+        }
     }
 
-
+    @Override
+    public String toString() {
+        return "Name = " + fullName +
+                "\nphone Number = " + phoneNumber +
+                "\naddress = " + address +
+                "\nbank account = " + bankAccount +
+               "\n------------------\n";
+    }
 }
+
+

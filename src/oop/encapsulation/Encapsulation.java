@@ -55,7 +55,7 @@ public class Encapsulation {
         //        System.out.println(car.getBrand());  // Toyota
         //        car.accelerate();  // Speed: 110
         //    }
-        //}
+        // }
 
 
 
