@@ -1,22 +1,24 @@
-package slack.modifier_task;
+package slack.polymorphism_task3;
 
- public class BankAccount {
-    private String accountNumber;
+import java.util.Scanner;
+
+public class Bank extends MyPhone{
     private static double balance;
 
-
-
-    public static void deposit(double amount){
+    public static void myBankAccount(double amount){
         if (amount > 0){
             balance += amount;
             System.out.println(amount + " amount");
-            System.out.println("New balance " + balance);
+            System.out.println("My bank " + balance);
         }else {
             System.out.println("Error!");
         }
     }
 
-    public static void withdraw(double amount){
+
+    public static void withdraw(){
+        Scanner scanner = new Scanner(System.in);
+        int amount = scanner.nextInt();
         if (amount > 0 && amount <= balance){
             balance -= amount;
             System.out.println(amount + " amount");
