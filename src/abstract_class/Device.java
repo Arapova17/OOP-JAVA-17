@@ -3,9 +3,9 @@ package abstract_class;
 import java.time.LocalDate;
 
 public abstract class Device {
+    private long id;
     private String brand;
     private int price;
-    private int id;
     private String operatingSystem;
     private String color;
     private LocalDate yearOfIssue;
@@ -13,17 +13,21 @@ public abstract class Device {
     public Device() {
     }
 
-    public Device(String brand, int price, int id, String operatingSystem, String color, LocalDate yearOfIssue) {
+    public Device(long id, String brand, int price, String operatingSystem, String color, LocalDate yearOfIssue) {
+        this.id = id;
         this.brand = brand;
         this.price = price;
-        this.id = id;
         this.operatingSystem = operatingSystem;
         this.color = color;
         this.yearOfIssue = yearOfIssue;
     }
 
-    public Device(String brand, int price, String operatingSystem, String color, LocalDate yearOfIssue) {
+    public long id() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String brand() {
@@ -40,14 +44,6 @@ public abstract class Device {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public int id() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String operatingSystem() {
@@ -78,21 +74,21 @@ public abstract class Device {
 
     public abstract Device[] getAllDevice();
 
-    public abstract Device getById(int id);
+    public abstract Device getById(long id);
 
-    public abstract void updateDevice(int id, Device device);
+    public abstract void updateDevice(long id, Device device);
 
-    public abstract Device deleteDevice(int id);
+    public abstract void deleteDevice(long id);
 
     @Override
     public String toString() {
-        return "Device{" +
-                "brand='" + brand + '\'' +
-                ", price=" + price +
-                ", id=" + id +
-                ", operatingSystem='" + operatingSystem + '\'' +
-                ", color='" + color + '\'' +
-                ", yearOfIssue=" + yearOfIssue +
-                '}';
+        return "\nDevice" +
+                "\nid = " + id +
+                "\nbrand = " + brand +
+                "\nprice = " + price +
+                "\noperating System = " + operatingSystem +
+                "\ncolor = " + color +
+                "\nyear Of Issue = " + yearOfIssue +
+                "\n-----------------";
     }
 }

@@ -1,38 +1,21 @@
 package abstract_class;
 
+import javax.tools.SimpleJavaFileObject;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class Phone extends Device{
-    private int id;
     private String camera;
     private boolean isSupport5g;
 
-    public Phone(){
+    public Phone() {
     }
 
-    public Phone(int id, String camera, boolean isSupport5g) {
-        this.id = id;
+    public Phone(long id, String brand, int price, String operatingSystem, String color,
+                 LocalDate yearOfIssue, String camera, boolean isSupport5g) {
+        super(id, brand, price, operatingSystem, color, yearOfIssue);
         this.camera = camera;
         this.isSupport5g = isSupport5g;
-    }
-
-    public Phone(String brand, int price, int id, String operatingSystem, String color, LocalDate yearOfIssue, String camera, boolean isSupport5g) {
-        super(brand, price, id, operatingSystem, color, yearOfIssue);
-        this.camera = camera;
-        this.isSupport5g = isSupport5g;
-    }
-
-    public int id() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Override
-    public void addDevice(Device device) {
-
     }
 
     public String camera() {
@@ -51,34 +34,76 @@ public class Phone extends Device{
         isSupport5g = support5g;
     }
 
+    // TODO CRUD:
 
+    Device[] phone = new Phone[5];
+    int phoneCount = 0;
+
+    // create;
+    @Override
+    public void addDevice(Device device) {
+
+        phone[phoneCount++] = device;
+
+    }
+
+
+    //read;
     @Override
     public Device[] getAllDevice() {
-        return new Device[0];
+        System.out.println("Success!");
+        return phone;
     }
 
     @Override
-    public Device getById(int id) {
+    public Device getById(long id) {
+        for (Device phones : phone) {
+            if (phones.id() == id) {
+                return phones;
+            }
+        }
         return null;
     }
 
+    //update;
     @Override
-    public void updateDevice(int id, Device device) {
-
+    public void updateDevice(long id, Device device) {
+        Device phone = getById(id);
+        phone.setBrand(device.brand());
+        phone.setPrice(device.price());
+        phone.setOperatingSystem(device.operatingSystem());
+        phone.setColor(device.color());
+        phone.setYearOfIssue(device.yearOfIssue());
+        System.out.println("Success!");
     }
 
+    //delete;
     @Override
-    public Device deleteDevice(int id) {
-        return null;
-    }
+    public void deleteDevice(long id) {
+        int index = - 1;
+        for (int i = 0; i < phone.length; i++) {
+            if (phone[i].id() == id){
+                index = i;
+                break;
+            }
+        }
 
+        Device[] newDevice = new Phone[phone.length - 1];
+        for (int i = 0; i < index; i++) {
+            newDevice[i] = phone[i];
+        }
+
+        for (int i = index; i < newDevice.length; i++) {
+            newDevice[i] = phone[i + 1];
+        }
+
+        phone = newDevice;
+    }
 
     @Override
     public String toString() {
-        return "Phone{" +
-                "camera='" + camera + '\'' +
-                ", isSupport5g=" + isSupport5g +
-                super.toString() +
-                '}';
+        return "\nPhone" +
+                "\ncamera = " + camera +
+                "\nis Support 5g = " + isSupport5g + super.toString();
     }
 }
