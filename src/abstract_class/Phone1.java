@@ -1,18 +1,16 @@
 package abstract_class;
 
-import javax.tools.SimpleJavaFileObject;
 import java.time.LocalDate;
-import java.util.Arrays;
 
-public class Phone extends Device{
+public class Phone1 extends Device{
     private String camera;
     private boolean isSupport5g;
 
-    public Phone() {
+    public Phone1() {
     }
 
-    public Phone(long id, String brand, int price, String operatingSystem, String color,
-                 LocalDate yearOfIssue, String camera, boolean isSupport5g) {
+    public Phone1(long id, String brand, int price, String operatingSystem, String color,
+                  LocalDate yearOfIssue, String camera, boolean isSupport5g) {
         super(id, brand, price, operatingSystem, color, yearOfIssue);
         this.camera = camera;
         this.isSupport5g = isSupport5g;
@@ -36,7 +34,7 @@ public class Phone extends Device{
 
     // TODO CRUD:
 
-    Device[] phone = new Phone[5];
+    Device[] phone = new Phone1[5];
     int phoneCount = 0;
 
     // create;
@@ -88,7 +86,7 @@ public class Phone extends Device{
             }
         }
 
-        Device[] newDevice = new Phone[phone.length - 1];
+        Device[] newDevice = new Phone1[phone.length - 1];
         for (int i = 0; i < index; i++) {
             newDevice[i] = phone[i];
         }
