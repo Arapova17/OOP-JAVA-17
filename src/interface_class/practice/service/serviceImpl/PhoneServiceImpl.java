@@ -1,6 +1,5 @@
 package interface_class.practice.service.serviceImpl;
 
-import abstract_class.Phone1;
 import interface_class.practice.database.Database;
 import interface_class.practice.models.Contact;
 import interface_class.practice.models.Phone;
