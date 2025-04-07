@@ -27,15 +27,21 @@ public class Main {
 
         Song song = new Song("Lovely\n", "Bella\n ", "Thought I found a way,\nThought I found a way, yeah (found)");
 
+        int count = 0;
         try {
             FileWriter fileWriter = new FileWriter("song.txt");
+            count++;
             fileWriter.write("Title: " + song.title());
+            count++;
             fileWriter.write("Author: " + song.author());
+            count++;
             fileWriter.write(song.text());
+            count++;
             fileWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("count " + count);
 
         try(FileReader fileReader = new FileReader("song.txt")){
             Scanner scanner = new Scanner(fileReader);

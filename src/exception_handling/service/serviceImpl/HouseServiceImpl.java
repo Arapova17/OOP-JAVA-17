@@ -46,42 +46,42 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public House getAllHousesByAgency(long agencyId) {
-        try {
-            for (Agency agency : Database.agencies) {
-                if (agency.id() == agencyId) {
-                    return agency.houses()[houseCount++];
-                }
+    public House[] getAllHousesByAgency(long agencyId) {
+        for (Agency agency : Database.agencies){
+            if (agency.id() == agencyId){
+                return agency.houses();
             }
-        }catch (MyException e){
-            System.out.println(e.getMessage());
         }
-        return null;
+        return new House[0];
     }
 
     @Override
     public String deleteHouseById(long id) {
-        int indexToDelete = - 1;
-        for (Agency agency : Database.agencies){
+        for (Agency agency : Database.agencies) {
+            int indexToDelete = -1;
+
             for (int i = 0; i < agency.houses().length; i++) {
-                if (agency.houses()[i].id() == id){
+                if (agency.houses()[i].id() == id) {
                     indexToDelete = i;
                     break;
                 }
             }
 
-            if (indexToDelete == - 1){
-                return "House with id " + id + " not found";
+            if (indexToDelete == -1) {
+                continue;
             }
 
-            House[] newHouses = new House[agency.name().length()];
+            House[] newHouses = new House[agency.houses().length - 1];
             for (int i = 0, j = 0; i < agency.houses().length; i++) {
-                if (i != indexToDelete){
+                if (i != indexToDelete) {
                     newHouses[j++] = agency.houses()[i];
                 }
             }
 
+            agency.setHouses(newHouses);
+            return "House with id " + id + " deleted successfully";
         }
-        return "";
+
+        return "House with id " + id + " not found";
     }
 }

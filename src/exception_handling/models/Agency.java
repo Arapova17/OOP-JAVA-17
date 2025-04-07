@@ -80,13 +80,12 @@ public class Agency {
 
     @Override
     public String toString() {
-        return "Agency{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", foundationDate=" + foundationDate +
-                ", houses=" + Arrays.toString(houses) +
-                ", customers=" + Arrays.toString(customers) +
-                '}';
+        return "\nAgency" +
+                "\nid = " + id +
+                "\nname = " + name +
+                "\naddress = " + address +
+                "\nfoundation Date = " + foundationDate +
+                "\nhouses = " + Arrays.toString(houses) +
+                "\ncustomers = " + Arrays.toString(customers);
     }
 }
